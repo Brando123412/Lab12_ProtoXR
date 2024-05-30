@@ -6,14 +6,10 @@ public class GameController : MonoBehaviour
 {
     [SerializeField] private InvertebrateAnimal invertebrate;
     [SerializeField] private VertebrateAnimal vertebrate;
+    [SerializeField] private ProtozooAnimal protozoo;
 
     private List<IAnimal> animals = new List<IAnimal>();
 
-    void Start()
-    {
-        CreateInvertebrateAnimal();
-        CreateVertebrateAnimal();
-    }
 
     public void CreateInvertebrateAnimal()
     {
@@ -21,6 +17,7 @@ public class GameController : MonoBehaviour
         animals.Add(animal);
         animal.Breed();
         animal.Onomatopoeia();
+        Instantiate(invertebrate.prefabs);
     }
 
     public void CreateVertebrateAnimal()
@@ -29,5 +26,14 @@ public class GameController : MonoBehaviour
         animals.Add(animal);
         animal.Breed();
         animal.Onomatopoeia();
+        Instantiate(vertebrate.prefabs);
+    }
+    public void CreateProtozooAnimal()
+    {
+        IAnimal animal = protozoo.CreateAnimal();
+        animals.Add(animal);
+        animal.Breed();
+        animal.Onomatopoeia();
+        Instantiate(protozoo.prefabs);
     }
 }
